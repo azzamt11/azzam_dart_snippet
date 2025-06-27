@@ -1,0 +1,141 @@
+{
+	// Place your global snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
+	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
+	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
+	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
+	// Placeholders with the same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"scope": "javascript,typescript",
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+
+	"multip": {
+        "prefix": "multip",
+        "body": [
+				"MultiProvider(",
+					"\tproviders: [",
+						"\t\tChangeNotifierProvider(create: (context)=> $1(localStorage))",
+					"\t],",
+					"\tchild: MaterialApp(",
+						"\t\ttheme: ThemeData(",
+							"\t\t\tinputDecorationTheme: InputDecorationTheme(",
+								"\t\t\t\tlabelStyle: TextStyle(",
+									"\t\t\t\t\tcolor: Colors.black,",
+									"\t\t\t\t\tfontSize: 17,",
+								"\t\t\t\t),",
+								"\t\t\t\tfloatingLabelStyle: TextStyle(",
+									"\t\t\t\t\tcolor: Colors.black,",
+									"\t\t\t\t\tfontSize: 14,",
+								"\t\t\t\t),",
+								"\t\t\t\thintStyle: TextStyle(",
+									"\t\t\t\t\tcolor: Colors.grey,",
+								"\t\t\t\t),",
+								"\t\t\t\thelperStyle: TextStyle(",
+									"\t\t\t\t\tcolor: Colors.black54,",
+								"\t\t\t\t),",
+								"\t\t\t\tfocusedBorder: InputBorder.none,",
+								"\t\t\t\tenabledBorder: InputBorder.none,",
+								"\t\t\t\tborder: InputBorder.none,",
+								"\t\t\t\terrorBorder: InputBorder.none,",
+								"\t\t\t\tfocusedErrorBorder: InputBorder.none,",
+								"\t\t\t\tdisabledBorder: InputBorder.none",
+							"\t\t\t),",
+							"\t\t\tprimaryColor: Colors.white,",
+							"\t\t\ttextTheme: TextTheme(",
+								"\t\t\t\tbodyMedium: TextStyle(",
+									"\t\t\t\t\tfontSize: 17",
+								"\t\t\t\t)",
+							"\t\t\t)",
+						"\t\t),",
+						"\t\ttitle: 'No-title',",
+						"\t\tdebugShowCheckedModeBanner: false,",
+						"\t\tinitialRoute: '/',",
+						"\t\troutes: {",
+						"\t\t'/': (context)=> HomeScreen(),",        
+						"\t\t},",
+					"\t)",
+				");"
+        ],
+        "description": "A brief description of what this snippet does"
+    },
+
+	"appb": {
+        "prefix": "appb",
+        "body": [
+				"AppBar(",
+        			"\ttitle: Text('$1'),",
+					"\tcenterTitle: true,",
+					"\tbackgroundColor: Colors.green[500],",
+					"\tforegroundColor: Colors.white,",
+					"\tleading: GestureDetector(",
+          				"\t\tchild: Icon(",
+            				"\t\t\tIcons.menu,",
+            				"\t\t\tcolor: Colors.black",
+						"\t\t),",
+        			"\t),",
+        			"\tbottom: TabBar(",
+						"\t\tcontroller: _tabController,",
+						"\t\tindicatorColor: Colors.yellow,",
+						"\t\tlabelColor: Colors.white,",
+						"\t\tunselectedLabelColor: Colors.black,",
+						"\t\ttabs: [",
+            				"\t\t\tTab(text: 'First Tab'),",
+            				"\t\t\tTab(text: 'Second Tab'),",
+          				"\t\t],",
+        			"\t),",
+      			"),"
+        ],
+        "description": "A brief description of what this snippet does"
+    },
+
+	"dropd": {
+        "prefix": "dropd",
+        "body": [
+				"DropdownButtonFormField<String>(",
+                	"\tstyle: Theme.of(context).textTheme.bodyMedium,",
+                	"\tvalue: null,",
+					"\tonChanged: (String? newValue) {",
+                  		"\t\t//no implementation yet",
+					"\t},",
+                	"\tdecoration: InputDecoration(",
+						"\t\tlabelText: '$1',",
+						"\t\tborder: InputBorder.none",
+					"\t),",
+					"\titems: <String>['item 1', 'item 2']",
+						"\t\t.map<DropdownMenuItem<String>>((String value) {",
+						"\t\treturn DropdownMenuItem<String>(",
+							"\t\t\tvalue: value,",
+							"\t\t\tchild: Text(value),",
+						"\t\t);",
+					"\t}).toList(),",
+				"),"
+        ],
+        "description": "A brief description of what this snippet does"
+    },
+
+	"textf": {
+        "prefix": "textf",
+        "body": [
+				"TextFormField(",
+                	"\tdecoration: InputDecoration(",
+                  		"\t\tlabelText: '$1',",
+                  		"\t\tborder: InputBorder.none,",
+                	"\t),",
+                	"\tkeyboardType: TextInputType.numberWithOptions(decimal: true),",
+                	"\tinitialValue: totalTime.toString(),",
+                	"\tvalidator: (value) {",
+						"\t\t//no implementation yet",
+                	"\t},",
+                	"\tonSaved: (value) => totalTime = double.parse(value!),",
+              	"),"
+        ],
+        "description": "A brief description of what this snippet does"
+    }
+}
