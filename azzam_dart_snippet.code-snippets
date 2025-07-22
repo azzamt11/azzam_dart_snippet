@@ -253,7 +253,31 @@
 				"}"
         ],
         "description": "A brief description of what this snippet does"
-    }
+    },
+
+	"basep": {
+        "prefix": "basep",
+        "body": [
+				"abstract class BasePage extends StatefulWidget {",
+					"\tconst BasePage({super.key});",
+				"}",
+				"",
+				"abstract class BasePageState<Page extends BasePage>",
+					"\textends State<Page> {}",
+					"",
+				"mixin BasePageBuilder<Page extends BasePage> on BasePageState<Page> {",
+					"\t@override",
+					"\tWidget build(BuildContext context) => body();",
+					"",
+					"\tWidget body();",
+				"}",
+				"",
+				"abstract class PageWrapper {",
+					"\tWidget wrappedRoute(BuildContext context);",
+				"}",
+        ],
+        "description": "A brief description of what this snippet does"
+    },
 
 	
 }
