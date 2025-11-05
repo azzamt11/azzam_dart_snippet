@@ -350,6 +350,48 @@
           "}"
        ],
        "description": "Dependency injection setup using GetIt and Chopper services"
+    },
+
+	"jsc": {
+        "scope": "dart",
+        "prefix": "jsconv",
+        "body": [
+            "import 'dart:async';",
+            "import 'package:chopper/chopper.dart';",
+            "",
+            "",
+            "typedef T FromJson<T>(dynamic json);",
+            "",
+            "class JsonSerializableConverter extends JsonConverter {",
+            "  @override",
+            "  FutureOr<Response<ResultType>> convertResponse<ResultType, Item>(Response response) async {",
+            "    final jsonResponse = await super.convertResponse(response);",
+            "",
+            "    return jsonResponse.copyWith<ResultType>(",
+            "      body: _decode<Item>(jsonResponse.body) as ResultType,",
+            "    );",
+            "  }",
+            "",
+            "  dynamic _decode<T>(dynamic entity) {",
+            "    if (entity is T) return entity;",
+            "",
+            "    if (entity is List) {",
+            "      return entity.map((item) => _decode<T>(item)).toList();",
+            "    }",
+            "",
+            "    if (entity is Map<String, dynamic>) {",
+            "      switch (T.toString()) {",
+            "        case 'AuthResponse':",
+            "          return AuthResponse.fromJson(entity);",
+            "        default:",
+            "          return entity;",
+            "      }",
+            "    }",
+            "    return null;",
+            "  }",
+            "}"
+        ],
+        "description": "Chopper JsonConverter implementation for manual deserialization of serializable models."
     }
 
    
