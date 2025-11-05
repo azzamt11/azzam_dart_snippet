@@ -15,6 +15,10 @@
    //    ],
    //    "description": "Log output to console"
    // }
+   //
+   //Put this snippet in :
+   // 
+   // C:\Users\infinix\AppData\Roaming\Code\User\snippets\azzam_dart_snippet\azzam_dart_snippet.code-snippets
 
    "multip": {
         "prefix": "multip",
