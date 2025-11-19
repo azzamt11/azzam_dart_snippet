@@ -62,7 +62,7 @@
                   "\t\tdebugShowCheckedModeBanner: false,",
                   "\t\tinitialRoute: '/',",
                   "\t\troutes: {",
-                  "\t\t'/': (context)=> HomeScreen(),",        
+                  "\t\t'/': (context)=> $1Screen(),",        
                   "\t\t},",
                "\t)",
             ");"
@@ -464,7 +464,7 @@
             " \t@override",
             " \tList<AutoRoute> get routes => [",
             " \t\t\t//AutoRoute(",
-            " \t\t\t\t//page: ${1:Home}Route.page,",
+            " \t\t\t\t//page: ${1:$1}Route.page,",
             " \t\t\t\t//path: '/',",
             " \t\t\t\t//initial: true,",
             " \t\t\t//),",
@@ -594,6 +594,24 @@
          "}"
       ],
       "description": "Freezed $1 model with JSON serialization"
+   },
+
+   "service": {
+      "prefix": "service",
+      "body": [
+         "import 'package:chopper/chopper.dart';",
+         "",
+         "part '$1_service.chopper.dart';",
+         "",
+         "@ChopperApi(baseUrl: '/$1')",
+         "abstract class $1Service extends ChopperService {",
+         "\tstatic $1Service create([ChopperClient? client]) => _$$1Service(client);",
+         "",
+         "\t@Get(path: '/all')",
+         "\tFuture<Response<$1ApiResponse>> fetch();",
+         "}"
+      ],
+      "description": "Chopper API service definition for $1Service"
    }
 
    
