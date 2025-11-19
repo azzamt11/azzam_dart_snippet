@@ -68,7 +68,7 @@
             ");"
         ],
         "description": "A brief description of what this snippet does"
-    },
+   },
 
    "appb": {
         "prefix": "appb",
@@ -97,7 +97,7 @@
                "),"
         ],
         "description": "A brief description of what this snippet does"
-    },
+   },
 
    "dropd": {
         "prefix": "dropd",
@@ -122,7 +122,7 @@
             "),"
         ],
         "description": "A brief description of what this snippet does"
-    },
+   },
 
    "textf": {
         "prefix": "textf",
@@ -141,7 +141,7 @@
                  "),"
         ],
         "description": "A brief description of what this snippet does"
-    },
+   },
 
    "elev": {
         "prefix": "elev",
@@ -172,7 +172,7 @@
             ");"
         ],
         "description": "A brief description of what this snippet does"
-    },
+   },
 
    "main": {
         "prefix": "main",
@@ -191,7 +191,7 @@
             "}"
         ],
         "description": "A brief description of what this snippet does"
-    },
+   },
 
    "app": {
         "scope": "dart",
@@ -231,7 +231,7 @@
             "}"
         ],
         "description": "Sets up the root Flutter App widget with AutoRouter and multiple BlocProviders using GetIt (di.sl)."
-    },
+   },
 
    "basep": {
         "prefix": "basep",
@@ -255,7 +255,7 @@
             "}",
         ],
         "description": "A brief description of what this snippet does"
-    },
+   },
 
    "di": {
        "prefix": "di",
@@ -328,7 +328,7 @@
           "}"
        ],
        "description": "Dependency injection setup using GetIt and Chopper services"
-    },
+   },
 
 	"jsconv": {
         "scope": "dart",
@@ -370,7 +370,7 @@
             "}"
         ],
         "description": "Chopper JsonConverter implementation for manual deserialization of serializable models."
-    },
+   },
 
     "conf": {
         "scope": "dart",
@@ -384,7 +384,7 @@
             "}"
         ],
         "description": "Defines static application configuration constants like baseUrl and API key."
-    },
+   },
 
     "theme": {
         "scope": "dart",
@@ -449,7 +449,7 @@
             "}"
         ],
         "description": "Defines a custom Flutter ThemeData builder function using Google Fonts (Nunito) and custom typography."
-    },
+   },
 
     "approuter": {
         "scope": "dart",
@@ -482,6 +482,99 @@
             "}"
         ],
         "description": "AutoRoute configuration class using RootStackRouter with common routes."
-    }
+   },
+
+    "homecubit": {
+      "prefix": "homecubit",
+      "body": [
+         "part 'home_cubit.freezed.dart';",
+         "part 'home_state.dart';",
+         "",
+         "class HomeCubit extends Cubit<HomeState> {",
+         "\tHomeCubit(this._homeRepository)",
+         "\t\t: super(InitialHomeState());",
+         "",
+         "\tstatic HomeCubit create(BuildContext context) =>",
+         "\t\tHomeCubit(injector.get());",
+         "",
+         "\tfinal HomeRepository _homeRepository;",
+         "",
+         "\tFuture<void> fetch() async {",
+         "\t\temit(LoadingHomeState(",
+         "\t\t\tloadingHome: Home(",
+         "\t\t\t\tpromo: null,",
+         "\t\t\t\tyoutube: null,",
+         "\t\t\t\tloading: true,",
+         "\t\t\t\terror: null",
+         "\t\t\t)",
+         "\t\t));",
+         "\t\tawait Future.delayed(const Duration(seconds: 5));",
+         "\t\ttry {",
+         "\t\t\tfinal response = await _homeRepository.fetch();",
+         "\t\t\tif(response?.code == 200) {",
+         "\t\t\t\temit(LoadedHomeState(",
+         "\t\t\t\t\thome: Home.fromHomeApiResponse(response)",
+         "\t\t\t\t));",
+         "\t\t\t} else {",
+         "\t\t\t\temit(ErrorHomeState(",
+         "\t\t\t\t\terrorHome: Home(",
+         "\t\t\t\t\t\tpromo: null,", 
+         "\t\t\t\t\t\tyoutube: null,", 
+         "\t\t\t\t\t\tloading: false,", 
+         "\t\t\t\t\t\terror: response?.message,", 
+         "\t\t\t\t\t),",
+         "\t\t\t\t\toffline: response?.message.toString().toLowerCase().contains(\"socket\")",
+         "\t\t\t\t));",
+         "\t\t\t}",
+         "\t\t} catch(e) {",
+         "\t\t\temit(ErrorHomeState(",
+         "\t\t\t\terrorHome: Home(",
+         "\t\t\t\t\tpromo: null,", 
+         "\t\t\t\t\tyoutube: null,", 
+         "\t\t\t\t\tloading: false,", 
+         "\t\t\t\t\terror: e.toString()", 
+         "\t\t\t\t),",
+         "\t\t\t\toffline: e.toString().toLowerCase().contains(\"socket\")",
+         "\t\t\t));",
+         "\t\t}",
+         "\t}",
+         "",
+         "\tFuture<void> reload({Duration? delay}) async {",
+         "\t\t//not implemented yet",
+         "\t}",
+         "}"
+      ],
+      "description": "Cubit implementation with fetch and reload methods"
+   },
+
+   "homestate": {
+      "prefix": "homestate",
+      "body": [
+         "part of 'home_cubit.dart';",
+         "",
+         "@freezed",
+         "abstract class HomeState with _$HomeState {",
+         "",
+         "\tconst factory HomeState.initial() = InitialHomeState;",
+         "",
+         "\tconst factory HomeState.loading({",
+         "\t\trequired Home? loadingHome",
+         "\t}) = LoadingHomeState;",
+         "",
+         "\tconst factory HomeState.loaded({",
+         "\t\trequired Home? home",
+         "\t}) = LoadedHomeState;",
+         "",
+         "\tconst factory HomeState.error({",
+         "\t\trequired Home? errorHome,",
+         "\t\trequired bool? offline",
+         "\t}) = ErrorHomeState;",
+         "\t",
+         "}"
+      ],
+      "description": "Freezed HomeState definition with initial, loading, loaded, and error states"
+   }
+
+
    
 }
